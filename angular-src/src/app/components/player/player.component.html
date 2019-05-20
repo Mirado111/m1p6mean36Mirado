@@ -1,0 +1,81 @@
+<div class="cont">
+  
+  <div class="row">
+    
+    <div class="col-sm-12 customwrapper">
+      <div class="row">
+        <div class="col-sm-8" droppable (onDrop)="nextManuel($event)">
+            <youtube-player *ngIf="id!=undefined"
+            height="500px"
+            width="100%"
+            [videoId]="id"
+            (ready)="savePlayer($event)"
+            (change)="onStateChange($event)"
+            ></youtube-player>
+          
+          <div id="project-wrapper">
+            <div id="project-container">
+              <div id="overlay"></div>
+              <div id="content">
+                <h2>{{titre}}</h2>
+                <h3>{{description}}</h3>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-lg-12 " style="margin-top: -10px;">
+              <div class="col-lg-12 btn btn-link" (click)="onClickPlayList()">
+                <div id="project-wrapper" >
+                    <div id="project-container">
+                      <div id="overlay"></div>
+                      <div id="content">
+                        <h2 class="h2"><span>{{informationPlaylist.name}}</span></h2>
+                    </div>
+                  </div>
+                </div>
+                
+            </div>
+            <div class="col-lg-12">
+                <div class="scrollbar scrollbar-danger">  
+                    <div class="list-group">
+                      <div (click)="nextManualClick(search.track)" draggable [dragData]="search.track" *ngFor="let search of playlist; let i = index" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="row">
+                          <div class="col-lg-3">
+                              <img src={{search.image}}>
+                          </div>
+                          <div class="col-lg-9">
+                              <div class="d-flex w-100 justify-content-between">
+                                  <h6 class="mb-1">{{search.titre}}</h6>
+                              </div>
+                          </div>
+                        </div>
+                      </div>    
+                    </div>
+                  </div>
+            </div>
+            <div class="col-lg-12">
+                <div id="project-wrapper">
+                    <div id="project-container">
+                      <div id="overlay"></div>
+                      <div id="content">
+                        <div id="controls">
+                            <div class="column" (click)="ngOnInit()"><i class="fa fa-refresh" aria-hidden="true"></i></div>
+                            <div class="column" (click)="previouse()"><i class="fa fa-step-backward" aria-hidden="true"></i></div>
+                            <div class="column" *ngIf="!isPlay" (click)="changeEvent()"><i class="fa fa-play play-btn fa-fw" aria-hidden="true"></i></div>
+                            <div class="column" *ngIf="isPlay" (click)="changeEvent()"><i class="fa fa-pause pause-btn fa-fw" aria-hidden="true"></i></div>
+                            <div class="column" (click)="next()"><i class="fa fa-step-forward" aria-hidden="true"></i></div>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+            
+          </div>  
+        </div>
+      </div>
+    </div> 
+    
+  </div>
+</div>

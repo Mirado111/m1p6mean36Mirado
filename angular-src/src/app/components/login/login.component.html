@@ -1,0 +1,32 @@
+<div class="cont">
+	<div class="row">
+    
+		<div class="col-lg-4">
+		  <img src="assets/login1.png">
+    </div>
+    
+   
+    <div class="col-lg-6">
+        <form (submit)="onLoginSubmit()">
+            <fieldset>
+              <legend>Log in</legend>
+              <hr>
+              <div class="control-group">
+                
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" class="form-control" [(ngModel)]="email" name="email"  aria-describedby="emailHelp" placeholder="ex : example@test.com">
+                  
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="password">
+                </div>         
+                <button type="submit" class="btn btn-primary mybtn">Log in</button>
+              </div>
+            </fieldset>
+          </form>
+    </div>
+		
+	</div>
+</div>
