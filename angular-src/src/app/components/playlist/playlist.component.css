@@ -140,7 +140,7 @@ img {
   width: 8px;
   height: 50px;
   margin-right:5px;
-  background-color:#561b14;
+  background-color : darkblue;
   -webkit-animation: animate 1s infinite;
   animation: animate 1s infinite;
   float: left;
@@ -213,5 +213,5 @@ img {
 }
 .mybtn {
   
- 
+  background-color: darkblue !important;
 }
