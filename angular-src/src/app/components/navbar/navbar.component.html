@@ -17,13 +17,13 @@
 
      <ul class="nav navbar-nav navbar-right">
         <li *ngIf="authService.loggedOut()" class="nav-item"  [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
-            <a class="nav-link"  [routerLink]="['/login']"><img src="assets/iconlogin.png">Log in</a>
+            <a class="nav-link"  [routerLink]="['/login']">Log in</a>
           </li>
         <li *ngIf="authService.loggedOut()" class="nav-item"  [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
-          <a class="nav-link"  [routerLink]="['/register']"><img src="assets/signin.png" with="30px" height="30px">Sign in</a>
+          <a class="nav-link"  [routerLink]="['/register']">Sign in</a>
         </li>
         <li *ngIf="authService.loggedIn()" class="nav-item" >
-            <a class="nav-link" (click)="onLogoutClick()"href="#" ><img src="assets/iconlogout.png">Log out</a>
+            <a class="nav-link" (click)="onLogoutClick()"href="#" >Log out</a>
         </li>
        
       </ul>

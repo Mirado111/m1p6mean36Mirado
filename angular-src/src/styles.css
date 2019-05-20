@@ -34,3 +34,12 @@
     background-color: #0a015c;
     border-color: #0a015c;
 }
+.badge-primary{
+    color: #fff;
+    background-color: #0a015c;
+}
+.nav-link {
+    display: block;
+    padding: 0.9rem 1rem;
+    font-size: x-large;
+}
