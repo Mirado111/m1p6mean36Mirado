@@ -28,22 +28,22 @@ router.post('/delete', function(req,res,next){
     const track = req.body.track; 
     Video.deleteVideo(id_playlist,track,function(err){
         if(id_playlist==undefined){
-            return res.json({success:false, msg:"id playlist invalide"});
+            return res.json({success:false, msg:"Invalide playlistid id ."});
         }
         if(track==undefined){
-            return res.json({success:false, msg:"track invalide"});
+            return res.json({success:false, msg:"Invalide track ."});
         }
-        if(err) return res.json({success:false, msg:"impossible de supprimer le track "+err})
+        if(err) return res.json({success:false, msg:"Impossible to suppress track : "+err})
         else{
             Video.updateAfterDelete(id_playlist,track,function(err){
         
                 if(err){
-                    return res.json({success:false, msg:"impossible de mettre à jour les tracks invalide "+err});
+                    return res.json({success:false, msg:"Unable to update invalide track : "+err});
                 }else{
                     PlayList.deleteOneMusicPlayList(id_playlist, function(err){
-                        if(err)return res.json({success:false, msg:"erreur lors de la mise à jour de la playliste "+err})
+                        if(err)return res.json({success:false, msg:"Error when updating playlist : "+err})
                         else{
-                            return res.json({success:true, msg:"suppression et mise à jour réussi"});
+                            return res.json({success:true, msg:"Video removed from playlist ."});
                         }
                     });              
                 }
@@ -56,7 +56,7 @@ router.post('/count',function(req,res,next){
     const id_playlist = req.body.id_playlist; 
     Video.countByPlayList(id_playlist, function(err,value){
         if(err){
-            return res.json({success:false, msg:"Impossible d'extraire les resultats "+err});
+            return res.json({success:false, msg:"Unable to exctract result : "+err});
         }else{
             return res.json({success:true, count:count});
         }
@@ -67,7 +67,7 @@ router.get('/countByUser',passport.authenticate('jwt',{session:false}),function(
     const id_user = user._id;
     Video.countByUser(id_user, function(err,value){
         if(err){
-            return res.json({success:false, msg:"Impossible d'extraire les resultats "+err});
+            return res.json({success:false, msg:"Unable to exctract result : "+err});
         }else{
             return res.json({success:true, count:value});
         }
@@ -80,7 +80,7 @@ router.post('/newvideo', passport.authenticate('jwt',{session:false}),function(r
     const url = req.body.url;
     var id = getVideoId(url).id;
     fetchVideoInfo(id, function (err, videoInfo) {
-        if(url==undefined) return res.json({success:false, msg:"url invalide"});
+        if(url==undefined) return res.json({success:false, msg:"Invalide URL ."});
         if (err) return res.json({success:false, msg:err});
         else{
             console.log(videoInfo);
@@ -101,17 +101,17 @@ router.post('/newvideo', passport.authenticate('jwt',{session:false}),function(r
             }); 
             Video.countPlayList(id_playlist, function(err, count){
                 if(err){
-                    return res.json({success: false, msg:"Impossible de trouver la playlist "+err});
+                    return res.json({success: false, msg:"Playlist not found : "+err});
                 } else{
                     PlayList.addOneMusicPlayList(id_playlist,function(err,val){
-                        if(err) return res.json({success: false, msg:"Impossible de mettre à jour la playlist "+err});
+                        if(err) return res.json({success: false, msg:"Unable to update playlist : "+err});
                         else{
                             video.track = count+1;
                             Video.addVideo(video, function(err, video){
                                 if(err){
-                                    res.json({success: false, msg:"Erreur lors de l'enregistrement "+err}); 
+                                    res.json({success: false, msg:"Error while saving changes : "+err}); 
                                 }else{
-                                    res.json({success: true, msg:'Video '+video.titre+' enregistrée'}); 
+                                    res.json({success: true, msg:'Video '+video.titre+' saved .'}); 
                                 }
                             });
                         }
@@ -145,17 +145,17 @@ router.post('/newvideoyoutube', passport.authenticate('jwt',{session:false}),fun
     });   
     Video.countPlayList(id_playlist, function(err, count){
         if(err){
-            return res.json({success: false, msg:"Impossible de trouver la playlist "+err});
+            return res.json({success: false, msg:"playlist not found : "+err});
         } else{
             PlayList.addOneMusicPlayList(id_playlist,function(err,val){
-                if(err) return res.json({success: false, msg:"Impossible de mettre à jour la playlist "+err});
+                if(err) return res.json({success: false, msg:"Unable to updata the playlist : "+err});
                 else{
                     video.track = count+1;
                     Video.addVideo(video, function(err, video){
                         if(err){
-                            res.json({success: false, msg:"Erreur lors de l'enregistrement "+err}); 
+                            res.json({success: false, msg:"Error while saving : "+err}); 
                         }else{
-                            res.json({success: true, msg:'Video '+video.titre+' enregistrée'}); 
+                            res.json({success: true, msg:'Video '+video.titre+' saved'}); 
                         }
                     });
                 }
@@ -172,9 +172,9 @@ router.post('/getvideosplaylist', function(req,res,next){
     const id_playlist = req.body.id_playlist; 
     Video.findByPlayList(id_playlist,function(err, playlist){
         if(id_playlist==undefined){
-            return res.json({success:false , msg:"identifiant playlist invalide"});
+            return res.json({success:false , msg:"Invalide playlist ID ."});
         }
-        if(err) return res.json({success:false , msg:"erreur d'extraction des videos : "+err})
+        if(err) return res.json({success:false , msg:"Error while exctracting video : "+err})
         else{
             return res.json({success:true, playlist:playlist});
         }
@@ -188,7 +188,7 @@ router.post('/search',function(req,res,next){
         key: "AIzaSyBD8fT0RBMzZXs6if9EcMB1WYiENOBgg-o"
       };
       youtube(key, opts, function(err, results) {
-        if(err)res.json({success:false, msg:"erreur lors de l'extraction des resultats "+err});
+        if(err)res.json({success:false, msg:"Error while exctraction : "+err});
         else{
             return res.json({success:true, results:results})
         }

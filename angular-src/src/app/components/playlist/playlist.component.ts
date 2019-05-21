@@ -123,13 +123,12 @@ export class PlaylistComponent implements OnInit {
     console.log(objectToDelete);
     this.videoService.deleteVideoOfPlayList(argument).subscribe(data =>{ 
       if(data.success){
-        this.onSave=false;
-        this.loadDataBackground();
       }else{
-        this.flashMessagesService.show("impossible de supprimer la video", {cssClass: 'alert-primary', timeout: 3000});
-        this.videos.push(objectToDelete);
-        this.onSave=false;
+        //this.flashMessagesService.show( data.msg, {cssClass: 'alert-primary', timeout: 3000});
+        //this.videos.push(objectToDelete);
       }
+      this.loadDataBackground();
+      this.onSave=false;
     });
 
   }

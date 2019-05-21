@@ -14,9 +14,9 @@ router.post('/newplaylist', passport.authenticate('jwt',{session:false}),(req,re
     });
     PlayList.addPlayList(playlist, function(err, playlist){
         if(err){
-            res.json({success: false, msg:"Erreur lors de l'enregistrement "}); 
+            res.json({success: false, msg:"Error when saving . "}); 
         }else{
-            res.json({success: true, msg:'PlayList '+playlist.name+' enregistrée'}); 
+            res.json({success: true, msg:'PlayList '+playlist.name+' saved .'}); 
         }
     });
 });
@@ -24,13 +24,13 @@ router.post('/deleteplaylist',function(req,res,next){
     const id = req.body.id_playlist; 
     PlayList.deletePlayListById(id,function(err,playlist){
         if(err){
-            res.json({success:false, msg:"Impossible de supprimer le playlist cause "+err});
+            res.json({success:false, msg:"Unable to delete playlist : "+err});
         }else{
             Video.deleteAllPlaylist(id,function(err){
                 if(err){
-                    res.json({success:false, msg:"Impossible de supprimer les videos de la playlist cause "+err});
+                    res.json({success:false, msg:"Unable to delete playlist's song : "+err});
                 }else{
-                    res.json({success:true, msg:"La playlist "+playlist.name+" et ses vidéos ont bien été supprimé"});
+                    res.json({success:true, msg:playlist.name+" deleted successfull ."});
                 }
             })
             
@@ -65,7 +65,7 @@ router.post('/search',function(req,res,next){
         key: "AIzaSyC4Us7lmHs9H5g-pxuLFWmmlQ8oyGI6bGw"
       };
       youtube(key, opts, function(err, results) {
-        if(err)res.json({success:false, msg:"erreur lors de l'extraction des resultats "+err});
+        if(err)res.json({success:false, msg:"Error during extraction : "+err});
         else{
             return res.json({success:true, results:results})
         }

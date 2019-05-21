@@ -831,14 +831,14 @@ var PlaylistComponent = /** @class */ (function () {
         console.log(objectToDelete);
         this.videoService.deleteVideoOfPlayList(argument).subscribe(function (data) {
             if (data.success) {
-                _this.onSave = false;
-                _this.loadDataBackground();
             }
             else {
-                _this.flashMessagesService.show("impossible de supprimer la video", { cssClass: 'alert-primary', timeout: 3000 });
-                _this.videos.push(objectToDelete);
-                _this.onSave = false;
+                //this.flashMessagesService.show( data.msg, {cssClass: 'alert-primary', timeout: 3000});
+                _this.loadDataBackground();
+                //this.videos.push(objectToDelete);
             }
+            _this.loadDataBackground();
+            _this.onSave = false;
         });
     };
     PlaylistComponent.prototype.onSearchSubmit = function () {

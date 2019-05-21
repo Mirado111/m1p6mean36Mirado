@@ -14,11 +14,11 @@ router.post('/register', (req,res,next)=>{
     });
     User.getUserByEmail(newUser.email,function(err,user){
         if(user){
-            return res.json({success:false, msg:"The email used is already assigned to another account"});
+            return res.json({success:false, msg:"The email used is already assigned to another account ."});
         }
         User.addUser(newUser, function(err, user){
             if(err){
-                res.json({success: false, msg:"Erreur lors de l'enregistrement"}); 
+                res.json({success: false, msg:"Saving error ."}); 
             }else{
                 res.json({success: true, msg:'Successfull'}); 
             }
