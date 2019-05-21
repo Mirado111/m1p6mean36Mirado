@@ -344,11 +344,12 @@ var HomeComponent = /** @class */ (function () {
         console.log(id);
         this.videoService.deletePlayList(id).subscribe(function (data) {
             if (data.success) {
-                _this.loadData();
+                //this.loadData();
             }
             else {
-                _this.flashMessagesService.show(data.msg, { cssClass: 'alert-primary', timeout: 3000 });
+                //this.flashMessagesService.show(data.msg, {cssClass: 'alert-primary', timeout: 3000});
             }
+            _this.loadData();
         });
     };
     HomeComponent = __decorate([
@@ -834,7 +835,6 @@ var PlaylistComponent = /** @class */ (function () {
             }
             else {
                 //this.flashMessagesService.show( data.msg, {cssClass: 'alert-primary', timeout: 3000});
-                _this.loadDataBackground();
                 //this.videos.push(objectToDelete);
             }
             _this.loadDataBackground();

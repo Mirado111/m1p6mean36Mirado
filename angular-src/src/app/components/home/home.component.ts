@@ -90,10 +90,11 @@ export class HomeComponent implements OnInit {
     console.log(id);
     this.videoService.deletePlayList(id).subscribe(data => {
       if(data.success){
-        this.loadData();
+        //this.loadData();
       }else{
-        this.flashMessagesService.show(data.msg, {cssClass: 'alert-primary', timeout: 3000});
+        //this.flashMessagesService.show(data.msg, {cssClass: 'alert-primary', timeout: 3000});
       }
+      this.loadData();
     });
   }
 
